@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List, Optional, Any
+from .base import ETLModel
 
 @dataclass
 class Permissions:
@@ -31,7 +32,7 @@ class LockInfo:
     asset_string: str
 
 @dataclass
-class Announcement:
+class Announcement(ETLModel):
     id: str
     title: str
     last_reply_at: str
@@ -78,14 +79,3 @@ class Announcement:
     lock_info: Optional[LockInfo] = None
     lock_explanation: Optional[str] = None
     todo_date: Optional[str] = None
-    
-    @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "Announcement":
-        return cls(**data)
-    
-    @classmethod
-    def list_from_dicts(cls, data_list: List[dict[str, Any]]) -> List["Announcement"]:
-        return [cls.from_dict(data) for data in data_list]
-    
-    def to_dict(self) -> dict[str, Any]:
-        return self.__dict__

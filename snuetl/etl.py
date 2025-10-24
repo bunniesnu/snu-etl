@@ -1,5 +1,5 @@
 from .util import fetch_data
-from .models import Announcement
+from .models import Announcement, DashboardCard
 
 class ETL:
     def __init__(self, x_csrf_token, legacy_normandy_session):
@@ -11,7 +11,7 @@ class ETL:
 
     def get_dashboard_cards(self):
         url = "https://myetl.snu.ac.kr/api/v1/dashboard/dashboard_cards"
-        return self._fetch(url)
+        return DashboardCard.list_from_dicts(self._fetch(url))
 
     def get_course_announcements(self, course_id, per_page=40, page=1):
         url = (f"https://myetl.snu.ac.kr/api/v1/courses/{course_id}/discussion_topics?only_announcements=true&per_page={per_page}&page={page}&filter_by=all&no_avatar_fallback=1&include[]=sections_user_count&include[]=sections")

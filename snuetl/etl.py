@@ -1,5 +1,5 @@
 from .util import fetch_data
-from .models import Announcement, DashboardCard
+from .models import Announcement, DashboardCard, User
 
 class ETL:
     def __init__(self, x_csrf_token, legacy_normandy_session):
@@ -19,7 +19,7 @@ class ETL:
 
     def get_course_users(self, course_id, per_page=50):
         url = f"https://myetl.snu.ac.kr/api/v1/courses/{course_id}/users?include_inactive=true&include[]=avatar_url&include[]=enrollments&include[]=email&include[]=observed_users&include[]=can_be_removed&include[]=custom_links&per_page={per_page}"
-        return self._fetch(url)
+        return User.list_from_dicts(self._fetch(url))
     
     def get_course_board(self, course_id):
         url = f"https://myetl.snu.ac.kr/learningx/api/v1/learningx_board/courses/{course_id}/boards"

@@ -1,5 +1,5 @@
 import os
-from etl import ETL
+from snuetl import ETL
 from pathlib import Path
 from typing import Any
 import json

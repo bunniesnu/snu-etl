@@ -1,4 +1,4 @@
-from util import fetch_data
+from .util import fetch_data
 
 class ETL:
     def __init__(self, x_csrf_token, legacy_normandy_session):

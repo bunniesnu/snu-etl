@@ -1,5 +1,5 @@
 import requests
-from const import HEADERS
+from .const import HEADERS
 
 def fetch_data(url, x_csrf_token, legacy_normandy_session):
     header = HEADERS.copy()

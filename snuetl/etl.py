@@ -1,5 +1,5 @@
 from .util import fetch_data
-from .models.announcements import Announcement
+from .models import Announcement
 
 class ETL:
     def __init__(self, x_csrf_token, legacy_normandy_session):

@@ -1,4 +1,5 @@
 from .util import fetch_data
+from .models.announcements import Announcement
 
 class ETL:
     def __init__(self, x_csrf_token, legacy_normandy_session):
@@ -14,7 +15,7 @@ class ETL:
 
     def get_course_announcements(self, course_id, per_page=40, page=1):
         url = (f"https://myetl.snu.ac.kr/api/v1/courses/{course_id}/discussion_topics?only_announcements=true&per_page={per_page}&page={page}&filter_by=all&no_avatar_fallback=1&include[]=sections_user_count&include[]=sections")
-        return self._fetch(url)
+        return Announcement.list_from_dicts(self._fetch(url))
 
     def get_course_users(self, course_id, per_page=50):
         url = f"https://myetl.snu.ac.kr/api/v1/courses/{course_id}/users?include_inactive=true&include[]=avatar_url&include[]=enrollments&include[]=email&include[]=observed_users&include[]=can_be_removed&include[]=custom_links&per_page={per_page}"

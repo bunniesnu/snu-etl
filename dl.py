@@ -17,7 +17,7 @@ if __name__ == "__main__":
         course_output_path = output_path / str(course_id)
         course_output_path.mkdir(parents=True, exist_ok=True)
         print(f"----- Fetching for course: {course.get("originalName")} // ID: {course_id} -----")
-        json.dump(etl.get_course_announcements(course_id), open(course_output_path / f"announcements.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
+        json.dump([item.to_dict() for item in etl.get_course_announcements(course_id)], open(course_output_path / f"announcements.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
         json.dump(etl.get_course_users(course_id), open(course_output_path / f"users.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
         json.dump(etl.get_assignments(course_id), open(course_output_path / f"assignments.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
         json.dump(etl.get_assignment_submissions(course_id), open(course_output_path / f"submissions.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)

@@ -5,13 +5,9 @@ def fetch_data(url, x_csrf_token, legacy_normandy_session):
     header = HEADERS.copy()
     header["X-CSRF-Token"] = x_csrf_token
     header["Cookie"] = f"_legacy_normandy_session={legacy_normandy_session}"
-    try:
-        response = requests.get(url, headers=header)
-        response.raise_for_status()  # Raise an error for bad responses
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
-        return None
+    response = requests.get(url, headers=header)
+    response.raise_for_status()  # Raise an error for bad responses
+    return response.json()
 
 if __name__ == "__main__":
     import os

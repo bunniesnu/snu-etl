@@ -33,10 +33,10 @@ class ETL:
         url = f"https://myetl.snu.ac.kr/learningx/api/v1/learningx_board/courses/{course_id}/boards/{board_id}/posts/{post_id}"
         return self._fetch(url)
     
-    def get_assignments(self, course_id, per_page=50):
+    def get_assignment_groups(self, course_id, per_page=50):
         url = f"https://myetl.snu.ac.kr/api/v1/courses/{course_id}/assignment_groups?exclude_response_fields[]=description&exclude_response_fields[]=rubric&include[]=assignments&include[]=discussion_topic&override_assignment_dates=true&per_page={per_page}"
         return self._fetch(url)
 
-    def get_assignment_submissions(self, course_id, per_page=50):
+    def get_assignments(self, course_id, per_page=50):
         url = f"https://myetl.snu.ac.kr/api/v1/courses/{course_id}/students/submissions?per_page={per_page}"
         return self._fetch(url)

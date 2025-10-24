@@ -19,6 +19,6 @@ if __name__ == "__main__":
         print(f"----- Fetching for course: {course.originalName} // ID: {course_id} -----")
         json.dump([item.to_dict() for item in etl.get_course_announcements(course_id)], open(course_output_path / f"announcements.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
         json.dump([item.to_dict() for item in etl.get_course_users(course_id)], open(course_output_path / f"users.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
-        json.dump(etl.get_assignments(course_id), open(course_output_path / f"assignments.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
-        json.dump(etl.get_assignment_submissions(course_id), open(course_output_path / f"submissions.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
+        json.dump(etl.get_assignment_groups(course_id), open(course_output_path / f"assignments.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
+        json.dump(etl.get_assignments(course_id), open(course_output_path / f"submissions.json", "w", encoding="utf-8"), ensure_ascii=False, indent=4)
     print("----- Fetching completed -----")
